@@ -6,11 +6,11 @@ int main() {
 }
 -----------
 #include <stdio.h>
-#include <unistd.h>  // مكتبة fork()
+#include <unistd.h>
 
 int main() {
     printf("قبل fork\n");
-    fork();  // إنشاء عملية ابن
+    fork();
     printf("بعد fork\n");
     return 0;
 }
