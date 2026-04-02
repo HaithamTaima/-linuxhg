@@ -1,17 +1,28 @@
 #include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
 
 int main() {
-    int a, b, c, max;
-    printf("Please input three numbers: ");
-    scanf("%d %d %d", &a, &b, &c);
+    int ab, random;
+    double cel, cosine, floatabs, flo, loge, log10v, power, expo, sq_root;
 
-    if (a > b && a > c)
-        max = a;
-    else if (b > a && b > c)
-        max = b;
-    else
-        max = c;
+    ab = abs(-8);
+    cel = ceil(45.0001);
+    cosine = cos(30 * M_PI / 180);
+    expo = exp(1.0);
+    floatabs = fabs(-8.432);
+    flo = floor(45.99356);
+    loge = log(2.71828);
+    log10v = log10(100);
+    power = pow(0.16, 0.5);
+    random = rand();
+    sq_root = sqrt(2.25);
 
-    printf("The maximum of %d, %d, %d is = %d\n", a, b, c, max);
+    printf("Absolute value: %d\n", ab);
+    printf("Ceil value: %lf\n", cel);
+    printf("Cosine value: %lf\n", cosine);
+    printf("Exponential value: %lf\n", expo);
+    printf("Square root: %lf\n", sq_root);
+
     return 0;
 }
