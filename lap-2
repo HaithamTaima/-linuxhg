@@ -1,28 +1,30 @@
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
+#define PI 3.14159
 
-int main() {
-    int ab, random;
-    double cel, cosine, floatabs, flo, loge, log10v, power, expo, sq_root;
+int main(void) {
+    double radius, area, circum;
+    FILE *inp, *outp;
 
-    ab = abs(-8);
-    cel = ceil(45.0001);
-    cosine = cos(30 * M_PI / 180);
-    expo = exp(1.0);
-    floatabs = fabs(-8.432);
-    flo = floor(45.99356);
-    loge = log(2.71828);
-    log10v = log10(100);
-    power = pow(0.16, 0.5);
-    random = rand();
-    sq_root = sqrt(2.25);
+    inp = fopen("circle.dat", "r");
+    if (inp == NULL) {
+        printf("Unable to open input file\n");
+        exit(1);
+    }
 
-    printf("Absolute value: %d\n", ab);
-    printf("Ceil value: %lf\n", cel);
-    printf("Cosine value: %lf\n", cosine);
-    printf("Exponential value: %lf\n", expo);
-    printf("Square root: %lf\n", sq_root);
+    outp = fopen("circle.out", "w");
+
+    fscanf(inp, "%lf", &radius);
+    fprintf(outp, "Radius: %.2f\n", radius);
+
+    area = PI * radius * radius;
+    circum = 2 * PI * radius;
+
+    fprintf(outp, "Area: %.2f\n", area);
+    fprintf(outp, "Circumference: %.2f\n", circum);
+
+    fclose(inp);
+    fclose(outp);
 
     return 0;
 }
