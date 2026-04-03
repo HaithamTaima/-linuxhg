@@ -1,17 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-long double factorial(int n) {
-    if (n == 0)
-        return 1;
-    else
-        return n * factorial(n - 1);
-}
+int main(int argc, char *argv[])
+{
+    int n = 0;
 
-int main() {
-    int x;
-    printf("Enter a number: ");
-    scanf("%d", &x);
+    if (argc == 1)
+    {
+        printf("No word to examine.\n");
+        exit(0);
+    }
 
-    printf("Factorial of %d is %Lf\n", x, factorial(x));
+    while (argv[1][n] != '\0')
+        n++;
+
+    printf("The word %s has %d characters.\n", argv[1], n);
     return 0;
 }
