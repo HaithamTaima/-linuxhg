@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 int main(int argc, char *argv[]) {
-    execv("/bin/echo", argv);
+    execvp("echo", argv);
 
     printf("EXEC Failed\n");
     return 0;
