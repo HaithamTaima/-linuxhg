@@ -3,17 +3,18 @@
 
 int main(int argc, char *argv[])
 {
-    int n = 0;
+    int sum;
 
-    if (argc == 1)
+    if (argc != 4)
     {
-        printf("No word to examine.\n");
+        printf("You must input three numbers.\n");
         exit(0);
     }
 
-    while (argv[1][n] != '\0')
-        n++;
+    sum = atoi(argv[1]) + atoi(argv[2]) + atoi(argv[3]);
 
-    printf("The word %s has %d characters.\n", argv[1], n);
+    printf("argv[0] is = %s\n", argv[0]);
+    printf("Sum = %d\n", sum);
+
     return 0;
 }
