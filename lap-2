@@ -1,10 +1,17 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 int main(void)
 {
-    fork();
-    fork();
-    printf("Hello from process %d\n", getpid());
+    int pid = fork();
+
+    if (pid == 0)
+        printf("Child process executed first\n");
+    else {
+        wait(NULL);
+        printf("Parent process executed after child\n");
+    }
+
     return 0;
 }
