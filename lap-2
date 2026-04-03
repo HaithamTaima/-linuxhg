@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int main() {
-    execlp("ls", "ls", "-l", "-a", NULL);
+int main(int argc, char *argv[]) {
+    execv("/bin/echo", argv);
 
     printf("EXEC Failed\n");
     return 0;
