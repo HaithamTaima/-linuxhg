@@ -2,24 +2,25 @@
 #include <unistd.h>
 #include <string.h>
 
-#define READ 0
-#define WRITE 1
+#define SIZE 1024
 
 int main() {
-    int fd[2];
-    char message[100];
+    int pfd[2];
+    int pid;
+    char buf[SIZE];
 
-    pipe(fd);
+    pipe(pfd);
 
-    if (fork() == 0) {
-        close(fd[READ]);
-        write(fd[WRITE], "Hello ICS431", 13);
-        close(fd[WRITE]);
+    if ((pid = fork()) == 0) {
+        close(pfd[1]);
+        while (read(pfd[0], buf, SIZE) > 0)
+            printf("Child read: %s\n", buf);
+        close(pfd[0]);
     } else {
-        close(fd[WRITE]);
-        read(fd[READ], message, 100);
-        printf("Parent read: %s\n", message);
-        close(fd[READ]);
+        close(pfd[0]);
+        write(pfd[1], "First message", 14);
+        write(pfd[1], "Second message", 15);
+        close(pfd[1]);
     }
 
     return 0;
