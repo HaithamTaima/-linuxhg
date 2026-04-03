@@ -1,37 +1,21 @@
 #include <stdio.h>
 
-void test1(int m, int n)
-{
-    m = 5;
-    n = 24;
-}
-
-void test2(int *m, int *n)
-{
-    *m = 5;
-    *n = 24;
-}
-
-void test3(int a, int *b)
-{
-    a = 38;
-    *b = 57;
-}
+struct car {
+    char maker[40];
+    char model[40];
+    int year;
+};
 
 int main()
 {
-    int a = 10, b = 16;
+    struct car FirstCar = {"Ford", "Mustang", 1996};
+    struct car SecondCar;
 
-    printf("a=%d, b=%d\n", a, b);
+    SecondCar = FirstCar;
 
-    test1(a, b);
-    printf("a=%d, b=%d\n", a, b);
-
-    test2(&a, &b);
-    printf("a=%d, b=%d\n", a, b);
-
-    test3(a, &b);
-    printf("a=%d, b=%d\n", a, b);
+    printf("First Car: %s %s %d\n", FirstCar.maker, FirstCar.model, FirstCar.year);
+    printf("Second Car: %s %s %d\n", SecondCar.maker, SecondCar.model, SecondCar.year);
+    printf("Size of structure: %lu bytes\n", sizeof(FirstCar));
 
     return 0;
 }
