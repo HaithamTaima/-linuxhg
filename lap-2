@@ -1,21 +1,22 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 
 int main() {
-    int pid;
+    int status;
 
-    printf("Parent PID: %d\n", getpid());
+    if (fork() == 0) {
+        int num;
+        printf("Enter number: ");
+        scanf("%d", &num);
+        exit(num);
+    }
 
-    pid = fork();
+    wait(&status);
 
-    if (pid == 0) {
-        printf("Child process\n");
-        execlp("ls", "ls", NULL);
-        printf("EXEC Failed\n");
-        exit(1);
-    } else {
-        printf("Parent continues\n");
+    if (WIFEXITED(status)) {
+        printf("Child exited with: %d\n", WEXITSTATUS(status));
     }
 
     return 0;
