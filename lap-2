@@ -1,27 +1,15 @@
-#include <stdio.h>
+#include <fcntl.h>
 #include <unistd.h>
-#include <string.h>
 
-#define SIZE 1024
+int main(int argc, char *argv[]) {
+    int fd;
 
-int main() {
-    int pfd[2];
-    int pid;
-    char buf[SIZE];
+    fd = open("output.txt", O_CREAT | O_TRUNC | O_RDWR, 0777);
 
-    pipe(pfd);
+    dup2(fd, 1); // redirect stdout
+    close(fd);
 
-    if ((pid = fork()) == 0) {
-        close(pfd[1]);
-        while (read(pfd[0], buf, SIZE) > 0)
-            printf("Child read: %s\n", buf);
-        close(pfd[0]);
-    } else {
-        close(pfd[0]);
-        write(pfd[1], "First message", 14);
-        write(pfd[1], "Second message", 15);
-        close(pfd[1]);
-    }
+    execlp("ls", "ls", NULL);
 
     return 0;
 }
