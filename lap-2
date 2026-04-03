@@ -1,20 +1,37 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main(int argc, char *argv[])
+void test1(int m, int n)
 {
-    int sum;
+    m = 5;
+    n = 24;
+}
 
-    if (argc != 4)
-    {
-        printf("You must input three numbers.\n");
-        exit(0);
-    }
+void test2(int *m, int *n)
+{
+    *m = 5;
+    *n = 24;
+}
 
-    sum = atoi(argv[1]) + atoi(argv[2]) + atoi(argv[3]);
+void test3(int a, int *b)
+{
+    a = 38;
+    *b = 57;
+}
 
-    printf("argv[0] is = %s\n", argv[0]);
-    printf("Sum = %d\n", sum);
+int main()
+{
+    int a = 10, b = 16;
+
+    printf("a=%d, b=%d\n", a, b);
+
+    test1(a, b);
+    printf("a=%d, b=%d\n", a, b);
+
+    test2(&a, &b);
+    printf("a=%d, b=%d\n", a, b);
+
+    test3(a, &b);
+    printf("a=%d, b=%d\n", a, b);
 
     return 0;
 }
