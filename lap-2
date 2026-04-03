@@ -1,31 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
-#include <sys/types.h>
 
-int main(void)
-{
-    pid_t pid;
+int main() {
+    execl("/bin/ls", "ls", "-l", "-a", NULL);
 
-    pid = fork();
-
-    if (pid < 0)
-    {
-        perror("fork");
-        return 1;
-    }
-
-    if (pid != 0)
-    {
-        while (1)
-        {
-            sleep(100);
-        }
-    }
-    else
-    {
-        exit(42);
-    }
-
+    printf("EXEC Failed\n");
     return 0;
 }
