@@ -1,15 +1,11 @@
 #include <stdio.h>
-#include <string.h>
+#include <unistd.h>
 
-int main()
+int main(void)
 {
-    char s1[50] = "Operating";
-    char s2[50] = " System";
-
-    strcat(s1, s2);
-
-    printf("Combined string: %s\n", s1);
-    printf("Length: %lu\n", strlen(s1));
-
+    printf("Hello World!\n");
+    fork();
+    printf("I am after forking\n");
+    printf("I am process %d\n", getpid());
     return 0;
 }
