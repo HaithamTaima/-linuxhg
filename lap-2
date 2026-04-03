@@ -1,21 +1,25 @@
 #include <stdio.h>
 
-struct car {
-    char maker[40];
-    char model[40];
-    int year;
-};
+#define MAX 5
 
 int main()
 {
-    struct car FirstCar = {"Ford", "Mustang", 1996};
-    struct car SecondCar;
+    int a[MAX], b[MAX], diff[MAX];
 
-    SecondCar = FirstCar;
+    printf("Enter elements of first array:\n");
+    for (int i = 0; i < MAX; i++)
+        scanf("%d", &a[i]);
 
-    printf("First Car: %s %s %d\n", FirstCar.maker, FirstCar.model, FirstCar.year);
-    printf("Second Car: %s %s %d\n", SecondCar.maker, SecondCar.model, SecondCar.year);
-    printf("Size of structure: %lu bytes\n", sizeof(FirstCar));
+    printf("Enter elements of second array:\n");
+    for (int i = 0; i < MAX; i++)
+        scanf("%d", &b[i]);
+
+    for (int i = 0; i < MAX; i++)
+        diff[i] = b[i] - a[i];
+
+    printf("Result:\n");
+    for (int i = 0; i < MAX; i++)
+        printf("%d %d %d\n", a[i], b[i], diff[i]);
 
     return 0;
 }
