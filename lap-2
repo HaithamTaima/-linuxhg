@@ -1,20 +1,17 @@
 #include <stdio.h>
 
-float mul(float x, float y) {
-    return x * y;
-}
-
-float division(float x, float y) {
-    return x / y;
+long double factorial(int n) {
+    if (n == 0)
+        return 1;
+    else
+        return n * factorial(n - 1);
 }
 
 int main() {
-    float n1, n2;
-    printf("Enter two numbers: ");
-    scanf("%f %f", &n1, &n2);
+    int x;
+    printf("Enter a number: ");
+    scanf("%d", &x);
 
-    printf("Product: %.2f\n", mul(n1, n2));
-    printf("Division: %.2f\n", division(n1, n2));
-
+    printf("Factorial of %d is %Lf\n", x, factorial(x));
     return 0;
 }
